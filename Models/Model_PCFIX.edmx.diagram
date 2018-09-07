@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="99d2f037e5ac4a44890b704e5e87b21e" Name="Diagram1">
+        <EntityTypeShape EntityType="PCFIXModel.OrdenDeTrabajo" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PCFIXModel.TipoEquipo" Width="1.5" PointX="0.5" PointY="5.625" />
+        <EntityTypeShape EntityType="PCFIXModel.TipoEstado" Width="1.5" PointX="2.625" PointY="5.625" />
+        <EntityTypeShape EntityType="PCFIXModel.TipoMarca" Width="1.5" PointX="5.25" PointY="5.625" />
+        <EntityTypeShape EntityType="PCFIXModel.TipoTrabajo" Width="1.5" PointX="5.75" PointY="0.75" />
+        <AssociationConnector Association="PCFIXModel.FK_OrdenDeTrabajo_TipoEquipo" />
+        <AssociationConnector Association="PCFIXModel.FK_OrdenDeTrabajo_TipoEstado" />
+        <AssociationConnector Association="PCFIXModel.FK_OrdenDeTrabajo_TipoMarca" />
+        <AssociationConnector Association="PCFIXModel.FK_OrdenDeTrabajo_TipoTrabajo" />
+        <EntityTypeShape EntityType="PCFIXModel.Cliente" Width="1.5" PointX="0.75" PointY="1" />
+        <AssociationConnector Association="PCFIXModel.FK_OrdenDeTrabajo_Cliente" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

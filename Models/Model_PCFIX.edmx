@@ -1,0 +1,419 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PCFIXModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DNI" Type="bigint" Nullable="false" />
+          <Property Name="Apellido" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Telefono1" Type="bigint" />
+          <Property Name="Telefono2" Type="bigint" />
+          <Property Name="Telefono3" Type="bigint" />
+          <Property Name="Email" Type="nvarchar" MaxLength="500" />
+          <Property Name="Observaciones" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="OrdenDeTrabajo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClienteID" Type="int" Nullable="false" />
+          <Property Name="FechaIngreso" Type="datetime" Nullable="false" />
+          <Property Name="FechaProblableEntrega" Type="date" Nullable="false" />
+          <Property Name="FechaEntrega" Type="datetime" />
+          <Property Name="TipoEstadoID" Type="int" Nullable="false" />
+          <Property Name="TipoEquipoID" Type="int" Nullable="false" />
+          <Property Name="TipoMarcaID" Type="int" Nullable="false" />
+          <Property Name="Caracteristicas" Type="nvarchar(max)" />
+          <Property Name="TipoTrabajoID" Type="int" Nullable="false" />
+          <Property Name="Observaciones" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TipoEquipo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoEstado">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoMarca">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoTrabajo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_OrdenDeTrabajo_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="OrdenDeTrabajo" Type="Self.OrdenDeTrabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrdenDeTrabajo">
+              <PropertyRef Name="ClienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdenDeTrabajo_TipoEquipo">
+          <End Role="TipoEquipo" Type="Self.TipoEquipo" Multiplicity="1" />
+          <End Role="OrdenDeTrabajo" Type="Self.OrdenDeTrabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoEquipo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrdenDeTrabajo">
+              <PropertyRef Name="TipoEquipoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdenDeTrabajo_TipoEstado">
+          <End Role="TipoEstado" Type="Self.TipoEstado" Multiplicity="1" />
+          <End Role="OrdenDeTrabajo" Type="Self.OrdenDeTrabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoEstado">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrdenDeTrabajo">
+              <PropertyRef Name="TipoEstadoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdenDeTrabajo_TipoMarca">
+          <End Role="TipoMarca" Type="Self.TipoMarca" Multiplicity="1" />
+          <End Role="OrdenDeTrabajo" Type="Self.OrdenDeTrabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoMarca">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrdenDeTrabajo">
+              <PropertyRef Name="TipoMarcaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdenDeTrabajo_TipoTrabajo">
+          <End Role="TipoTrabajo" Type="Self.TipoTrabajo" Multiplicity="1" />
+          <End Role="OrdenDeTrabajo" Type="Self.OrdenDeTrabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoTrabajo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrdenDeTrabajo">
+              <PropertyRef Name="TipoTrabajoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PCFIXModelStoreContainer">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrdenDeTrabajo" EntityType="Self.OrdenDeTrabajo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoEquipo" EntityType="Self.TipoEquipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoEstado" EntityType="Self.TipoEstado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoMarca" EntityType="Self.TipoMarca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoTrabajo" EntityType="Self.TipoTrabajo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_OrdenDeTrabajo_Cliente" Association="Self.FK_OrdenDeTrabajo_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="OrdenDeTrabajo" EntitySet="OrdenDeTrabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdenDeTrabajo_TipoEquipo" Association="Self.FK_OrdenDeTrabajo_TipoEquipo">
+            <End Role="TipoEquipo" EntitySet="TipoEquipo" />
+            <End Role="OrdenDeTrabajo" EntitySet="OrdenDeTrabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdenDeTrabajo_TipoEstado" Association="Self.FK_OrdenDeTrabajo_TipoEstado">
+            <End Role="TipoEstado" EntitySet="TipoEstado" />
+            <End Role="OrdenDeTrabajo" EntitySet="OrdenDeTrabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdenDeTrabajo_TipoMarca" Association="Self.FK_OrdenDeTrabajo_TipoMarca">
+            <End Role="TipoMarca" EntitySet="TipoMarca" />
+            <End Role="OrdenDeTrabajo" EntitySet="OrdenDeTrabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdenDeTrabajo_TipoTrabajo" Association="Self.FK_OrdenDeTrabajo_TipoTrabajo">
+            <End Role="TipoTrabajo" EntitySet="TipoTrabajo" />
+            <End Role="OrdenDeTrabajo" EntitySet="OrdenDeTrabajo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PCFIXModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PCFIXEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="OrdenDeTrabajo" EntityType="PCFIXModel.OrdenDeTrabajo" />
+          <EntitySet Name="TipoEquipo" EntityType="PCFIXModel.TipoEquipo" />
+          <EntitySet Name="TipoEstado" EntityType="PCFIXModel.TipoEstado" />
+          <EntitySet Name="TipoMarca" EntityType="PCFIXModel.TipoMarca" />
+          <EntitySet Name="TipoTrabajo" EntityType="PCFIXModel.TipoTrabajo" />
+          <AssociationSet Name="FK_OrdenDeTrabajo_TipoEquipo" Association="PCFIXModel.FK_OrdenDeTrabajo_TipoEquipo">
+            <End Role="TipoEquipo" EntitySet="TipoEquipo" />
+            <End Role="OrdenDeTrabajo" EntitySet="OrdenDeTrabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdenDeTrabajo_TipoEstado" Association="PCFIXModel.FK_OrdenDeTrabajo_TipoEstado">
+            <End Role="TipoEstado" EntitySet="TipoEstado" />
+            <End Role="OrdenDeTrabajo" EntitySet="OrdenDeTrabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdenDeTrabajo_TipoMarca" Association="PCFIXModel.FK_OrdenDeTrabajo_TipoMarca">
+            <End Role="TipoMarca" EntitySet="TipoMarca" />
+            <End Role="OrdenDeTrabajo" EntitySet="OrdenDeTrabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdenDeTrabajo_TipoTrabajo" Association="PCFIXModel.FK_OrdenDeTrabajo_TipoTrabajo">
+            <End Role="TipoTrabajo" EntitySet="TipoTrabajo" />
+            <End Role="OrdenDeTrabajo" EntitySet="OrdenDeTrabajo" />
+          </AssociationSet>
+          <EntitySet Name="Cliente" EntityType="PCFIXModel.Cliente" />
+          <AssociationSet Name="FK_OrdenDeTrabajo_Cliente" Association="PCFIXModel.FK_OrdenDeTrabajo_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="OrdenDeTrabajo" EntitySet="OrdenDeTrabajo" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="OrdenDeTrabajo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClienteID" Type="Int32" Nullable="false" />
+          <Property Name="FechaIngreso" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaProblableEntrega" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaEntrega" Type="DateTime" Precision="3" />
+          <Property Name="TipoEstadoID" Type="Int32" Nullable="false" />
+          <Property Name="TipoEquipoID" Type="Int32" Nullable="false" />
+          <Property Name="TipoMarcaID" Type="Int32" Nullable="false" />
+          <Property Name="Caracteristicas" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TipoTrabajoID" Type="Int32" Nullable="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TipoEquipo" Relationship="PCFIXModel.FK_OrdenDeTrabajo_TipoEquipo" FromRole="OrdenDeTrabajo" ToRole="TipoEquipo" />
+          <NavigationProperty Name="TipoEstado" Relationship="PCFIXModel.FK_OrdenDeTrabajo_TipoEstado" FromRole="OrdenDeTrabajo" ToRole="TipoEstado" />
+          <NavigationProperty Name="TipoMarca" Relationship="PCFIXModel.FK_OrdenDeTrabajo_TipoMarca" FromRole="OrdenDeTrabajo" ToRole="TipoMarca" />
+          <NavigationProperty Name="TipoTrabajo" Relationship="PCFIXModel.FK_OrdenDeTrabajo_TipoTrabajo" FromRole="OrdenDeTrabajo" ToRole="TipoTrabajo" />
+          <NavigationProperty Name="Cliente" Relationship="PCFIXModel.FK_OrdenDeTrabajo_Cliente" FromRole="OrdenDeTrabajo" ToRole="Cliente" />
+        </EntityType>
+        <EntityType Name="TipoEquipo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="OrdenDeTrabajo" Relationship="PCFIXModel.FK_OrdenDeTrabajo_TipoEquipo" FromRole="TipoEquipo" ToRole="OrdenDeTrabajo" />
+        </EntityType>
+        <EntityType Name="TipoEstado">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="OrdenDeTrabajo" Relationship="PCFIXModel.FK_OrdenDeTrabajo_TipoEstado" FromRole="TipoEstado" ToRole="OrdenDeTrabajo" />
+        </EntityType>
+        <EntityType Name="TipoMarca">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="OrdenDeTrabajo" Relationship="PCFIXModel.FK_OrdenDeTrabajo_TipoMarca" FromRole="TipoMarca" ToRole="OrdenDeTrabajo" />
+        </EntityType>
+        <EntityType Name="TipoTrabajo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="OrdenDeTrabajo" Relationship="PCFIXModel.FK_OrdenDeTrabajo_TipoTrabajo" FromRole="TipoTrabajo" ToRole="OrdenDeTrabajo" />
+        </EntityType>
+        <Association Name="FK_OrdenDeTrabajo_TipoEquipo">
+          <End Type="PCFIXModel.TipoEquipo" Role="TipoEquipo" Multiplicity="1" />
+          <End Type="PCFIXModel.OrdenDeTrabajo" Role="OrdenDeTrabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoEquipo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrdenDeTrabajo">
+              <PropertyRef Name="TipoEquipoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdenDeTrabajo_TipoEstado">
+          <End Type="PCFIXModel.TipoEstado" Role="TipoEstado" Multiplicity="1" />
+          <End Type="PCFIXModel.OrdenDeTrabajo" Role="OrdenDeTrabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoEstado">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrdenDeTrabajo">
+              <PropertyRef Name="TipoEstadoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdenDeTrabajo_TipoMarca">
+          <End Type="PCFIXModel.TipoMarca" Role="TipoMarca" Multiplicity="1" />
+          <End Type="PCFIXModel.OrdenDeTrabajo" Role="OrdenDeTrabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoMarca">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrdenDeTrabajo">
+              <PropertyRef Name="TipoMarcaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdenDeTrabajo_TipoTrabajo">
+          <End Type="PCFIXModel.TipoTrabajo" Role="TipoTrabajo" Multiplicity="1" />
+          <End Type="PCFIXModel.OrdenDeTrabajo" Role="OrdenDeTrabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoTrabajo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrdenDeTrabajo">
+              <PropertyRef Name="TipoTrabajoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DNI" Type="Int64" Nullable="false" />
+          <Property Name="Apellido" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono1" Type="Int64" />
+          <Property Name="Telefono2" Type="Int64" />
+          <Property Name="Telefono3" Type="Int64" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OrdenDeTrabajo" Relationship="PCFIXModel.FK_OrdenDeTrabajo_Cliente" FromRole="Cliente" ToRole="OrdenDeTrabajo" />
+        </EntityType>
+        <Association Name="FK_OrdenDeTrabajo_Cliente">
+          <End Type="PCFIXModel.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="PCFIXModel.OrdenDeTrabajo" Role="OrdenDeTrabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrdenDeTrabajo">
+              <PropertyRef Name="ClienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PCFIXModelStoreContainer" CdmEntityContainer="PCFIXEntities">
+          <EntitySetMapping Name="OrdenDeTrabajo">
+            <EntityTypeMapping TypeName="PCFIXModel.OrdenDeTrabajo">
+              <MappingFragment StoreEntitySet="OrdenDeTrabajo">
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="TipoTrabajoID" ColumnName="TipoTrabajoID" />
+                <ScalarProperty Name="Caracteristicas" ColumnName="Caracteristicas" />
+                <ScalarProperty Name="TipoMarcaID" ColumnName="TipoMarcaID" />
+                <ScalarProperty Name="TipoEquipoID" ColumnName="TipoEquipoID" />
+                <ScalarProperty Name="TipoEstadoID" ColumnName="TipoEstadoID" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="FechaProblableEntrega" ColumnName="FechaProblableEntrega" />
+                <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+                <ScalarProperty Name="ClienteID" ColumnName="ClienteID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoEquipo">
+            <EntityTypeMapping TypeName="PCFIXModel.TipoEquipo">
+              <MappingFragment StoreEntitySet="TipoEquipo">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoEstado">
+            <EntityTypeMapping TypeName="PCFIXModel.TipoEstado">
+              <MappingFragment StoreEntitySet="TipoEstado">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoMarca">
+            <EntityTypeMapping TypeName="PCFIXModel.TipoMarca">
+              <MappingFragment StoreEntitySet="TipoMarca">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoTrabajo">
+            <EntityTypeMapping TypeName="PCFIXModel.TipoTrabajo">
+              <MappingFragment StoreEntitySet="TipoTrabajo">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="PCFIXModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefono3" ColumnName="Telefono3" />
+                <ScalarProperty Name="Telefono2" ColumnName="Telefono2" />
+                <ScalarProperty Name="Telefono1" ColumnName="Telefono1" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

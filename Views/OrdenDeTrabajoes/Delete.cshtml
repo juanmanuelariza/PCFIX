@@ -1,0 +1,127 @@
+﻿@model PCFIX.Models.OrdenDeTrabajo
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>OrdenDeTrabajo</h5>
+                    </div>
+                    <div class="ibox-content">
+    				<h4 class="text-danger">Estas seguro que lo queres eliminar?</h4>
+    				 <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaIngreso)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FechaIngreso)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaProblableEntrega)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FechaProblableEntrega)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaEntrega)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FechaEntrega)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Caracteristicas)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Caracteristicas)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Observaciones)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Observaciones)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TipoEquipo.Nombre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TipoEquipo.Nombre)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TipoEstado.Nombre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TipoEstado.Nombre)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TipoMarca.Nombre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TipoMarca.Nombre)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TipoTrabajo.Nombre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TipoTrabajo.Nombre)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Cliente.Apellido)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Cliente.Apellido)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Eliminar" class="btn btn-danger" />
+                @Html.ActionLink("Volver a Listado", "Index", null, new { @class = "btn btn-white"})
+            </div>
+        }
+    
+    
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+    
+    
+</body>
+</html>

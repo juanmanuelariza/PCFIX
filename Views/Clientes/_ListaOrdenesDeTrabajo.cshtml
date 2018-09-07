@@ -1,0 +1,125 @@
+﻿@model IEnumerable<PCFIX.Models.OrdenDeTrabajo>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="ibox float-e-margins">
+			<div class="ibox-title">
+				<h5>Lista de OrdenDeTrabajo</h5>
+				<div class="ibox-tools">
+					@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-sm" })
+				</div>
+			</div>
+			<div class="ibox-content">
+
+				<table class="table table-striped initdataTable">
+					<thead>
+						<tr>
+							<th>
+								Estado
+							</th>
+							<th>
+								Fecha Ingreso
+							</th>
+							<th>
+								Fecha Problable de Entrega								
+							</th>
+							<th>
+								Fecha Entrega
+							</th>
+							<th>
+								Equipo
+							</th>
+							<th>
+								Marca
+							</th>
+							<th>
+								Trabajo
+							</th>
+							<th>Acciones</th>
+						</tr>
+
+					</thead>
+					<tbody>
+						@foreach (var item in Model)
+						{
+							<tr>
+								<td>
+									@Html.DisplayFor(modelItem => item.TipoEstado.Nombre)
+								</td>
+								<td>
+									@item.FechaIngreso.ToString("dd/MM/yyyy")									
+								</td>
+								<td>
+									@item.FechaProblableEntrega.ToString("dd/MM/yyyy")
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.FechaEntrega)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.TipoEquipo.Nombre)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.TipoMarca.Nombre)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.TipoTrabajo.Nombre)
+								</td>
+								<td>
+									@Html.ActionLink("Detalles", "/OrdenDeTrabajoes/Details", new { id = item.ID }, new { @class = "btn btn-info btn-sm" })
+									@Html.ActionLink("Editar", "/OrdenDeTrabajoes/Edit", new { id = item.ID }, new { @class = "btn btn-warning btn-sm" })
+									@Html.ActionLink("Eliminar", "/OrdenDeTrabajoes/Delete", new { id = item.ID }, new { @class = "btn btn-danger btn-sm" })
+								</td>
+							</tr>
+						}
+					</tbody>
+
+				</table>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Styles {
+	@Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+}
+
+@section Scripts {
+	@Scripts.Render("~/plugins/dataTables")
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+
+			$('.initdataTable').DataTable({
+				pageLength: 25,
+				dom: '<"html5buttons"B>lTfgitp',
+				language: {
+					"url": "/locales/DatatableSpanish.json"
+				},
+				buttons: [
+					{ extend: 'copy' },
+					{ extend: 'csv' },
+					{ extend: 'excel', title: 'ExampleFile' },
+					{ extend: 'pdf', title: 'ExampleFile' },
+
+					{
+						extend: 'print',
+						customize: function (win) {
+							$(win.document.body).addClass('white-bg');
+							$(win.document.body).css('font-size', '10px');
+
+							$(win.document.body).find('table')
+								.addClass('compact')
+								.css('font-size', 'inherit');
+						}
+					}
+				]
+
+			});
+
+
+
+		});
+
+	</script>
+}
