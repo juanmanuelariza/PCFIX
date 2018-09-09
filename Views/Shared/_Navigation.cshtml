@@ -19,31 +19,48 @@
                 </div>
             </li>
 			<li class="@Html.IsSelected(controller: "Dashboard")">
-				<a href="@Url.Action("Index", "Dashboard")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.layouts">Dashboard</span></a>
+				<a href="@Url.Action("Index", "Dashboard")"><i class="fa fa-dashboard"></i> <span class="nav-label">Dashboard</span></a>
 			</li>
 			<li class="@Html.IsSelected(controller: "Clientes")">
-				<a href="@Url.Action("Index", "Clientes")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.layouts">Clientes</span> <span class="label label-primary pull-right">ABM</span></a>
+				<a href="@Url.Action("Index", "Clientes")"><i class="fa fa-users"></i> <span class="nav-label">Clientes</span> <span class="label label-primary pull-right">ABM</span></a>
 			</li>
-			<li class="@Html.IsSelected(controller: "TipoEquipos")">
-				<a href="@Url.Action("Index", "TipoEquipos")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.layouts">Tipo Equipos</span> <span class="label label-primary pull-right">ABM</span></a>
+
+			<li class="@Html.IsSelected(controller: "OrdenDeTrabajos")">
+				<a href="@Url.Action("Index", "Recibidos")"><i class="fa fa-list-ul"></i> <span class="nav-label">Listados</span> <span class="fa arrow"></span></a>
+				<ul class="nav nav-second-level collapse @Html.IsSelected(controller: "Dashboards", cssClass: "in")">
+					<li class="@Html.IsSelected(controller: "OrdenDeTrabajos", action: "Recibidos")">
+						<a href="@Url.Action("Recibidos", "OrdenDeTrabajos")"><i class="fa fa-clock-o"></i> <span class="nav-label">Recibidos</span></a>
+					</li>
+					<li class="@Html.IsSelected(controller: "OrdenDeTrabajos", action: "EnProgreso")">
+						<a href="@Url.Action("EnProgreso", "OrdenDeTrabajos")"><i class="fa fa-line-chart"></i> <span class="nav-label">EnProgreso</span></a>
+					</li>
+					<li class="@Html.IsSelected(controller: "OrdenDeTrabajos", action: "Derivadas")">
+						<a href="@Url.Action("Derivadas", "OrdenDeTrabajos")"><i class="fa fa-mail-reply"></i> <span class="nav-label">Derivadas</span></a>
+					</li>
+					<li class="@Html.IsSelected(controller: "OrdenDeTrabajos", action: "Terminados")">
+						<a href="@Url.Action("Terminados", "OrdenDeTrabajos")"><i class="fa fa-check"></i> <span class="nav-label">Terminados</span></a>
+					</li>
+					<li class="@Html.IsSelected(controller: "OrdenDeTrabajos", action: "Entregados")">
+						<a href="@Url.Action("Entregados", "OrdenDeTrabajos")"><i class="fa fa-check-square-o"></i> <span class="nav-label">Entregados</span></a>
+					</li>
+				</ul>
 			</li>
-			<li class="@Html.IsSelected(controller: "TipoMarcas")">
-				<a href="@Url.Action("Index", "TipoMarcas")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.layouts">Tipo Marcas</span> <span class="label label-primary pull-right">ABM</span></a>
-			</li>
-			<li class="@Html.IsSelected(controller: "TipoTrabajos")">
-				<a href="@Url.Action("Index", "TipoTrabajos")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.layouts">Tipo Trabajos</span> <span class="label label-primary pull-right">ABM</span></a>
-			</li>
-			<li class="@Html.IsSelected(controller: "TipoEstados")">
-				<a href="@Url.Action("Index", "TipoEstados")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.layouts">Tipo Estados</span> <span class="label label-primary pull-right">ABM</span></a>
-			</li>
-            <li class="@Html.IsSelected(controller: "asdasd")">
-                <a href="@Url.Action("Index", "asdasd")"><i class="fa fa-diamond"></i> <span class="nav-label" data-i18n="nav.dashboard">asdasd</span> <span class="fa arrow"></span></a>
+
+            <li class="@Html.IsSelected(controller: "TipoEquipos") @Html.IsSelected(controller: "TipoMarcas") @Html.IsSelected(controller: "TipoTrabajos") @Html.IsSelected(controller: "TipoEstados")">
+                <a href="@Url.Action("Index", "TipoEquipos")"><i class="fa fa-gears"></i> <span class="nav-label">Configuración</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "Dashboards", cssClass: "in")">
-                    <li class="@Html.IsSelected(action: "Dashboard_1")"><a href="@Url.Action("Dashboard_1", "Dashboards")">Dashboard v.1</a></li>
-                    <li class="@Html.IsSelected(action: "Dashboard_2")"><a href="@Url.Action("Dashboard_2", "Dashboards")">Dashboard v.2</a></li>
-                    <li class="@Html.IsSelected(action: "Dashboard_3")"><a href="@Url.Action("Dashboard_3", "Dashboards")">Dashboard v.3</a></li>
-                    <li class="@Html.IsSelected(action: "Dashboard_4_1")"><a href="@Url.Action("Dashboard_4_1", "Dashboards")">Dashboard v.4</a></li>
-                    <li class="@Html.IsSelected(action: "Dashboard_5")"><a href="@Url.Action("Dashboard_5", "Dashboards")">Dashboard v.5</a></li>
+					<li class="@Html.IsSelected(controller: "TipoEquipos")">
+						<a href="@Url.Action("Index", "TipoEquipos")"><i class="fa fa-gear"></i> <span class="nav-label">Tipo Equipos</span></a>
+					</li>
+					<li class="@Html.IsSelected(controller: "TipoMarcas")">
+						<a href="@Url.Action("Index", "TipoMarcas")"><i class="fa fa-gear"></i> <span class="nav-label">Tipo Marcas</span></a>
+					</li>
+					<li class="@Html.IsSelected(controller: "TipoTrabajos")">
+						<a href="@Url.Action("Index", "TipoTrabajos")"><i class="fa fa-gear"></i> <span class="nav-label">Tipo Trabajos</span></a>
+					</li>
+					<li class="@Html.IsSelected(controller: "TipoEstados")">
+						<a href="@Url.Action("Index", "TipoEstados")"><i class="fa fa-gear"></i> <span class="nav-label">Tipo Estados</span></a>
+					</li>
                 </ul>
             </li>
         </ul>

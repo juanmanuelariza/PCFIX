@@ -1,0 +1,146 @@
+﻿@model PCFIX.Models.OrdenDeTrabajo
+
+@{
+	ViewBag.Title = "Create";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Create OrdenDeTrabajo</h5>
+				</div>
+				<div class="ibox-content">
+
+					@using (Html.BeginForm())
+					{
+						@Html.AntiForgeryToken()
+
+						<div class="form-horizontal">
+							@Html.ValidationSummary(true)
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.ClienteID, "Cliente", new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									<input name="ClienteID" value="@ViewBag.ClienteID" type="hidden"/>
+									<label class="control-label" for="ClienteID">@ViewBag.ClienteNombre</label>
+									
+									@*@Html.DropDownList("ClienteID", String.Empty)
+									@Html.ValidationMessageFor(model => model.ClienteID)*@									
+								</div>
+							</div>
+
+							<div class="form-group initCalendar">
+								@Html.LabelFor(model => model.FechaIngreso, new { @class = "control-label col-md-2" })
+								<div class="input-group date">
+									<span class="input-group-addon"><i class="fa fa-calendar"></i></span>@Html.EditorFor(model => model.FechaIngreso)
+									@Html.ValidationMessageFor(model => model.FechaIngreso)
+								</div>
+							</div>
+
+							<div class="form-group initCalendar">
+								@Html.LabelFor(model => model.FechaProblableEntrega, new { @class = "control-label col-md-2" })
+								<div class="input-group date">
+									<span class="input-group-addon"><i class="fa fa-calendar"></i></span>@Html.EditorFor(model => model.FechaProblableEntrega)
+									@Html.ValidationMessageFor(model => model.FechaProblableEntrega)
+								</div>
+							</div>
+							
+							<div class="form-group">
+								@Html.LabelFor(model => model.TipoEstadoID, "TipoEstadoID", new { @class = "control-label col-md-2" })
+								<div class="col-md-10 initSelect2">
+									@Html.DropDownList("TipoEstadoID", String.Empty)
+									@Html.ValidationMessageFor(model => model.TipoEstadoID)
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.TipoEquipoID, "TipoEquipoID", new { @class = "control-label col-md-2" })
+								<div class="col-md-10 initSelect2">
+									@Html.DropDownList("TipoEquipoID", String.Empty)
+									@Html.ValidationMessageFor(model => model.TipoEquipoID)
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.TipoMarcaID, "TipoMarcaID", new { @class = "control-label col-md-2" })
+								<div class="col-md-10 initSelect2">
+									@Html.DropDownList("TipoMarcaID", String.Empty)
+									@Html.ValidationMessageFor(model => model.TipoMarcaID)
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.Caracteristicas, new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.TextAreaFor(model => model.Caracteristicas, new { @class = "form-control", @rows = 5 })
+									@Html.ValidationMessageFor(model => model.Caracteristicas)
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.TipoTrabajoID, "TipoTrabajoID", new { @class = "control-label col-md-2" })
+								<div class="col-md-10 initSelect2">
+									@Html.DropDownList("TipoTrabajoID", String.Empty)
+									@Html.ValidationMessageFor(model => model.TipoTrabajoID)
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.Observaciones, new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.TextAreaFor(model => model.Observaciones, new { @class = "form-control", @rows = 5 })
+									@Html.ValidationMessageFor(model => model.Observaciones)
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-md-offset-2 col-md-10">
+									<input type="submit" value="Crear" class="btn btn-primary" />
+									<a href="javascript:void(0);" class="btn btn-white" onclick="history.go(-1);">Cancelar</a>
+								</div>
+							</div>
+						</div>
+					}
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+@section Styles {
+	@Styles.Render("~/plugins/dataPickerStyles")
+	@Styles.Render("~/plugins/select2Styles")
+}
+
+@section Scripts {
+	@Scripts.Render("~/plugins/dataPicker")
+	@Scripts.Render("~/plugins/select2")
+	
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('.initCalendar .input-group.date').datepicker({
+				todayBtn: "linked",
+				keyboardNavigation: false,
+				forceParse: false,
+				calendarWeeks: true,
+				autoclose: true,
+				format: 'dd/mm/yyyy'
+			});
+		});
+
+		$(".initSelect2 select").select2({
+			placeholder: "Seleccionar",
+			allowClear: true
+		});
+		console.log('@ViewBag.ClienteID');
+		$("#ClienteID").val(1);
+	</script>
+}

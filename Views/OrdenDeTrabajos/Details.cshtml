@@ -1,0 +1,176 @@
+﻿@model PCFIX.Models.OrdenDeTrabajo
+
+@{
+	ViewBag.Title = "Details";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Detalle Orden de Trabajo Nº: @Html.DisplayFor(model => model.ID)</h5>
+				</div>
+				<div class="ibox-content">
+
+					<div class="col-md-6">
+						<h2>Oreden de trabajo</h2>
+						<dl class="dl-horizontal">
+							<dt>
+								Fecha Ingreso
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.FechaIngreso)
+							</dd>
+
+							<dt>
+								Fecha Probable de Entrega
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.FechaProblableEntrega)
+							</dd>
+
+							<dt>
+								Fecha Entrega
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.FechaEntrega)
+							</dd>
+
+							<dt>
+								Equipo
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.TipoEquipo.Nombre)
+							</dd>
+
+							<dt>
+								Estado
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.TipoEstado.Nombre)
+							</dd>
+
+							<dt>
+								Marca
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.TipoMarca.Nombre)
+							</dd>
+
+							<dt>
+								Trabajo
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.TipoTrabajo.Nombre)
+							</dd>
+
+							<dt>
+								@Html.DisplayNameFor(model => model.Caracteristicas)
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.Caracteristicas)
+							</dd>
+
+							<dt>
+								@Html.DisplayNameFor(model => model.Observaciones)
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.Observaciones)
+							</dd>
+						</dl>
+					</div>
+
+					<div class="col-md-6">
+						<h2 class="aligncenter">Cliente</h2>						
+						<dl class="dl-horizontal">
+							<dt>
+								Cliente
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.Cliente.Apellido), @Html.DisplayFor(model => model.Cliente.Nombre)
+							</dd>
+							<dt>
+								DNI
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.Cliente.DNI)
+							</dd>
+							<dt>
+								Telefono1
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.Cliente.Telefono1)
+							</dd>
+							<dt>
+								Telefono2
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.Cliente.Telefono2)
+							</dd>
+							<dt>
+								Telefono3
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.Cliente.Telefono3)
+							</dd>
+							<dt>
+								Email
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.Cliente.Email)
+							</dd>
+							<dt>
+								Observaciones
+							</dt>
+							<dd>
+								@Html.DisplayFor(model => model.Cliente.Observaciones)
+							</dd>
+						</dl>
+					</div>
+
+					
+
+					<div class="col-md-12">
+						@Html.ActionLink("Editar", "Edit", new { id = Model.ID }, new { @class = "btn btn-warning" })
+						@Html.ActionLink("Cambiar Estado", "CambiarEstado", new { id = Model.ID }, new { @class = "btn btn-info" })
+						<a href="javascript:void(0);" class="btn btn-white" onclick="history.go(-1);">Volver a Listado</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

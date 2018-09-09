@@ -128,7 +128,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
-    <Compile Include="Controllers\OrdenDeTrabajoesController.cs" />
+    <Compile Include="Controllers\OrdenDeTrabajosController.cs" />
     <Compile Include="Controllers\TipoEquiposController.cs" />
     <Compile Include="Controllers\TipoEstadosController.cs" />
     <Compile Include="Controllers\TipoMarcasController.cs" />
@@ -282,24 +282,8 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\font-awesome\css\font-awesome.css" />
     <Content Include="fonts\font-awesome\css\font-awesome.min.css" />
-    <Content Include="fonts\font-awesome\fonts\fontawesome-webfont.svg" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Global.asax" />
-    <Content Include="Content\style.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="CodeTemplates\MvcControllerWithContext\Controller.cs.t4" />
-    <Content Include="CodeTemplates\MvcView\Create.cs.t4" />
-    <Content Include="CodeTemplates\MvcView\Delete.cs.t4" />
-    <Content Include="CodeTemplates\MvcView\Details.cs.t4" />
-    <Content Include="CodeTemplates\MvcView\Edit.cs.t4" />
-    <Content Include="CodeTemplates\MvcView\Empty.cs.t4" />
-    <Content Include="CodeTemplates\MvcView\Imports.include.t4" />
-    <Content Include="CodeTemplates\MvcView\List.cs.t4" />
-    <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.cs.include.t4" />
     <Content Include="fonts\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\font-awesome\fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\font-awesome\fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\font-awesome\fonts\fontawesome-webfont.woff2" />
@@ -330,6 +314,22 @@
     <Content Include="fonts\font-awesome\scss\_rotated-flipped.scss" />
     <Content Include="fonts\font-awesome\scss\_stacked.scss" />
     <Content Include="fonts\font-awesome\scss\_variables.scss" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\style.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="CodeTemplates\MvcControllerWithContext\Controller.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Create.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Delete.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Details.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Edit.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Empty.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Imports.include.t4" />
+    <Content Include="CodeTemplates\MvcView\List.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.cs.include.t4" />
     <Content Include="Content\plugins\bootstrap-rtl\bootstrap-rtl.css.map" />
     <Content Include="Content\plugins\footable\fonts\footable.eot" />
     <Content Include="Content\plugins\footable\fonts\footable.ttf" />
@@ -361,6 +361,11 @@
     <Content Include="Models\Model_PCFIX.edmx.diagram">
       <DependentUpon>Model_PCFIX.edmx</DependentUpon>
     </Content>
+    <Content Include="locales\DatatableSpanish.json" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\font-awesome\less\screen-reader.less" />
+    <Content Include="fonts\font-awesome\scss\_screen-reader.scss" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\Inspinia.pubxml" />
     <Content Include="Scripts\api\typehead_collection.json" />
     <Content Include="Images\a1.jpg" />
@@ -1618,12 +1623,18 @@
     <Content Include="Views\Clientes\Details.cshtml" />
     <Content Include="Views\Clientes\Edit.cshtml" />
     <Content Include="Views\Clientes\Index.cshtml" />
-    <Content Include="Views\OrdenDeTrabajoes\Create.cshtml" />
-    <Content Include="Views\OrdenDeTrabajoes\Delete.cshtml" />
-    <Content Include="Views\OrdenDeTrabajoes\Details.cshtml" />
-    <Content Include="Views\OrdenDeTrabajoes\Edit.cshtml" />
-    <Content Include="Views\OrdenDeTrabajoes\IndexOrden.cshtml" />
     <Content Include="Views\Clientes\_ListaOrdenesDeTrabajo.cshtml" />
+    <Content Include="Views\OrdenDeTrabajos\Create.cshtml" />
+    <Content Include="Views\OrdenDeTrabajos\Delete.cshtml" />
+    <Content Include="Views\OrdenDeTrabajos\Details.cshtml" />
+    <Content Include="Views\OrdenDeTrabajos\Edit.cshtml" />
+    <Content Include="Views\OrdenDeTrabajos\Index.cshtml" />
+    <Content Include="Views\OrdenDeTrabajos\Recibidos.cshtml" />
+    <Content Include="Views\OrdenDeTrabajos\EnProgreso.cshtml" />
+    <Content Include="Views\OrdenDeTrabajos\Terminados.cshtml" />
+    <Content Include="Views\OrdenDeTrabajos\Entregados.cshtml" />
+    <Content Include="Views\OrdenDeTrabajos\Derivadas.cshtml" />
+    <Content Include="Views\OrdenDeTrabajos\CambiarEstado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

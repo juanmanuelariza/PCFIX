@@ -1,0 +1,98 @@
+﻿@model PCFIX.Models.OrdenDeTrabajo
+
+@{
+    ViewBag.Title = "CambiaEstado";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2></h2>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Cambia Estado</h5>
+				</div>
+				<div class="ibox-content">
+
+					@using (Html.BeginForm())
+					{
+						@Html.AntiForgeryToken()
+
+						<div class="form-horizontal">
+
+							@Html.ValidationSummary(true)
+							@Html.HiddenFor(model => model.ID)
+							@Html.HiddenFor(model => model.FechaIngreso)
+							@Html.HiddenFor(model => model.FechaProblableEntrega)
+							@Html.HiddenFor(model => model.TipoEquipoID)
+							@Html.HiddenFor(model => model.TipoMarcaID)
+							@Html.HiddenFor(model => model.TipoTrabajoID)
+							@Html.HiddenFor(model => model.Observaciones)
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.ClienteID, "Cliente", new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									<input name="ClienteID" value="@ViewBag.ClienteID" type="hidden" />
+									<label class="control-label" for="ClienteID">@ViewBag.ClienteNombre</label>
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.TipoTrabajoID, "TipoEstadoID", new { @class = "control-label col-md-2" })
+								<div class="col-md-10 initSelect2">
+									@Html.DropDownList("TipoEstadoID", String.Empty)
+									@Html.ValidationMessageFor(model => model.TipoEstadoID)
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-md-offset-2 col-md-10">
+									<input type="submit" value="Guardar" class="btn btn-warning" />
+									<a href="javascript:void(0);" class="btn btn-white" onclick="history.go(-1);">Cancelar</a>
+								</div>
+							</div>
+						</div>
+					}
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+@section Styles {
+	@Styles.Render("~/plugins/dataPickerStyles")
+	@Styles.Render("~/plugins/select2Styles")
+}
+
+@section Scripts {
+	@Scripts.Render("~/plugins/dataPicker")
+	@Scripts.Render("~/plugins/select2")
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('.initCalendar .input-group.date').datepicker({
+				todayBtn: "linked",
+				keyboardNavigation: false,
+				forceParse: false,
+				calendarWeeks: true,
+				autoclose: true,
+				format: 'dd/mm/yyyy'
+			});
+		});
+
+		$(".initSelect2 select").select2({
+			placeholder: "Seleccionar",
+			allowClear: true
+		});
+		console.log('@ViewBag.ClienteID');
+		$("#ClienteID").val(1);
+	</script>
+}

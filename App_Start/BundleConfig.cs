@@ -462,7 +462,7 @@ namespace PCFIX
 
 
 
-
+            BundleTable.EnableOptimizations = false;
         }
     }
 }

@@ -1885,15 +1885,15 @@ div.dt-button-info {
 }
 .form-control,
 .single-line {
-  background-color: #FFFFFF;
-  background-image: none;
-  border: 1px solid #e5e6e7;
-  border-radius: 1px;
-  color: inherit;
-  display: block;
-  padding: 6px 12px;
-  transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
-  width: 100%;
+	background-color: #FFFFFF;
+	background-image: none;
+	border: 1px solid #989898;
+	border-radius: 1px;
+	color: inherit;
+	display: block;
+	padding: 6px 12px;
+	transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+	width: 100%;
 }
 .form-control:focus,
 .single-line:focus {
@@ -8560,4 +8560,17 @@ body.md-skin {
   #page-wrapper {
     margin: 0;
   }
+}
+
+.initCalendar .input-group {
+	padding: 0 15px;
+}
+
+.initSelect2 .select2-container {
+	width: 100% !important;
+	border: 1px solid #989898 !important;
+}
+
+.select2-dropdown {
+	border: 1px solid #989898 !important;
 }

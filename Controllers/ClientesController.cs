@@ -28,6 +28,7 @@ namespace PCFIX.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Cliente cliente = db.Cliente.Find(id);
+            ViewBag.ClienteID = cliente.ID;
             if (cliente == null)
             {
                 return HttpNotFound();
