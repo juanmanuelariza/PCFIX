@@ -29,6 +29,7 @@ namespace PCFIX.Models
         public Nullable<long> Telefono3 { get; set; }
         public string Email { get; set; }
         public string Observaciones { get; set; }
+        public System.DateTime FechaAlta { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrdenDeTrabajo> OrdenDeTrabajo { get; set; }

@@ -172,31 +172,116 @@ namespace PCFIX.Controllers
             return RedirectToAction("../Clientes/Details/" + ordenDeTrabajo.ClienteID);
         }
 
-        public ActionResult Recibidos()
+        public ActionResult Recibidos(int? alerta)
         {
-            var ordendetrabajo = db.OrdenDeTrabajo.Include(o => o.TipoEquipo).Include(o => o.TipoEstado).Include(o => o.TipoMarca).Include(o => o.TipoTrabajo).Include(o => o.Cliente).Where(o => o.TipoEstadoID == 1);
+            IQueryable<OrdenDeTrabajo> ordendetrabajo;
+            switch (alerta)
+            {
+                case 1:
+                    //Alerta Recibidos hace más de 2 dias
+                    ViewBag.Titulo = "Recibidos hace más de 2 dias";
+                    ordendetrabajo = db.OrdenDeTrabajo.Include(o => o.TipoEquipo).Include(o => o.TipoEstado).Include(o => o.TipoMarca).Include(o => o.TipoTrabajo).Include(o => o.Cliente)
+                        .Where(o => o.TipoEstadoID == 1 && DbFunctions.DiffDays(o.FechaIngreso, DateTime.Now) >= 2);
+                    break;
+                default:
+                    //Si NULL o cualquier valor, mostramos listado original
+                    ViewBag.Titulo = "Recibidas";
+                    ordendetrabajo = db.OrdenDeTrabajo.Include(o => o.TipoEquipo).Include(o => o.TipoEstado).Include(o => o.TipoMarca).Include(o => o.TipoTrabajo).Include(o => o.Cliente)
+                        .Where(o => o.TipoEstadoID == 1);
+                    break;
+            }
             return View(ordendetrabajo.ToList());
         }
-        public ActionResult EnProgreso()
+         public ActionResult EnProgreso()
         {
-            var ordendetrabajo = db.OrdenDeTrabajo.Include(o => o.TipoEquipo).Include(o => o.TipoEstado).Include(o => o.TipoMarca).Include(o => o.TipoTrabajo).Include(o => o.Cliente).Where(o => o.TipoEstadoID == 2);
+            ViewBag.Titulo = "En Progreso";
+            var ordendetrabajo = db.OrdenDeTrabajo.Include(o => o.TipoEquipo).Include(o => o.TipoEstado).Include(o => o.TipoMarca).Include(o => o.TipoTrabajo).Include(o => o.Cliente)
+                .Where(o => o.TipoEstadoID == 2);
             return View(ordendetrabajo.ToList());
         }
-        public ActionResult Terminados()
+        public ActionResult Terminados(int? alerta)
         {
-            var ordendetrabajo = db.OrdenDeTrabajo.Include(o => o.TipoEquipo).Include(o => o.TipoEstado).Include(o => o.TipoMarca).Include(o => o.TipoTrabajo).Include(o => o.Cliente).Where(o => o.TipoEstadoID == 3);
+            ViewBag.Titulo = "Terminadas";
+            var ordendetrabajo = db.OrdenDeTrabajo.Include(o => o.TipoEquipo).Include(o => o.TipoEstado).Include(o => o.TipoMarca).Include(o => o.TipoTrabajo).Include(o => o.Cliente)
+                .Where(o => o.TipoEstadoID == 3);
             return View(ordendetrabajo.ToList());
         }
-        public ActionResult Entregados()
+        public ActionResult Entregados(int? alerta)
         {
-            var ordendetrabajo = db.OrdenDeTrabajo.Include(o => o.TipoEquipo).Include(o => o.TipoEstado).Include(o => o.TipoMarca).Include(o => o.TipoTrabajo).Include(o => o.Cliente).Where(o => o.TipoEstadoID == 4);
+            IQueryable<OrdenDeTrabajo> ordendetrabajo;
+            switch (alerta)
+            {
+                case 1:
+                    //Alerta BackUps (más de 10 días)
+                    ViewBag.Titulo = "Eliminar Backup";
+                    ordendetrabajo = db.OrdenDeTrabajo.Include(o => o.TipoEquipo).Include(o => o.TipoEstado).Include(o => o.TipoMarca).Include(o => o.TipoTrabajo).Include(o => o.Cliente)
+                        .Where(o => o.TipoEstadoID == 4 && DbFunctions.DiffDays(o.FechaEntrega, DateTime.Now) >= 10);
+                    break;
+                default:
+                    //Si NULL o cualquier valor, mostramos listado original
+                    ViewBag.Titulo = "Entregadas";
+                    ordendetrabajo = db.OrdenDeTrabajo.Include(o => o.TipoEquipo).Include(o => o.TipoEstado).Include(o => o.TipoMarca).Include(o => o.TipoTrabajo).Include(o => o.Cliente)
+                        .Where(o => o.TipoEstadoID == 4);
+                    break;
+            }            
             return View(ordendetrabajo.ToList());
         }
-        public ActionResult Derivadas()
+        public ActionResult Derivadas(int? alerta)
         {
-            var ordendetrabajo = db.OrdenDeTrabajo.Include(o => o.TipoEquipo).Include(o => o.TipoEstado).Include(o => o.TipoMarca).Include(o => o.TipoTrabajo).Include(o => o.Cliente).Where(o => o.TipoEstadoID == 5);
+            IQueryable<OrdenDeTrabajo> ordendetrabajo;
+            switch (alerta)
+            {
+                case 1:
+                    //Derivadas más de 7 días
+                    ViewBag.Titulo = "Derivadas 7 días o más";
+                    ordendetrabajo = db.OrdenDeTrabajo.Include(o => o.TipoEquipo).Include(o => o.TipoEstado).Include(o => o.TipoMarca).Include(o => o.TipoTrabajo).Include(o => o.Cliente)
+                        .Where(o => o.TipoEstadoID == 5 && DbFunctions.DiffDays(o.FechaIngreso, DateTime.Now) >= 7);
+                    break;
+                default:
+                    //Si NULL o cualquier valor, mostramos listado original
+                    ViewBag.Titulo = "Derivadas";
+                    ordendetrabajo = db.OrdenDeTrabajo.Include(o => o.TipoEquipo).Include(o => o.TipoEstado).Include(o => o.TipoMarca).Include(o => o.TipoTrabajo).Include(o => o.Cliente)
+                        .Where(o => o.TipoEstadoID == 5);
+                    break;
+            }
             return View(ordendetrabajo.ToList());
         }
-                
+
+        public ActionResult Abandonada(int? alerta)
+        {
+            IQueryable<OrdenDeTrabajo> ordendetrabajo;
+            switch (alerta)
+            {
+                case 1:
+                    //Abandonada más de 90 días
+                    ViewBag.Titulo = "Abandonadas 90 días o más de la fecha probable de entrega";
+                    ordendetrabajo = db.OrdenDeTrabajo.Include(o => o.TipoEquipo).Include(o => o.TipoEstado).Include(o => o.TipoMarca).Include(o => o.TipoTrabajo).Include(o => o.Cliente)
+                        .Where(o => o.TipoEstadoID == 6 && DbFunctions.DiffDays(o.FechaProblableEntrega, DateTime.Now) >= 90);
+                    break;
+                default:
+                    //Si NULL o cualquier valor, mostramos listado original
+                    ViewBag.Titulo = "Abandonadas";
+                    ordendetrabajo = db.OrdenDeTrabajo.Include(o => o.TipoEquipo).Include(o => o.TipoEstado).Include(o => o.TipoMarca).Include(o => o.TipoTrabajo).Include(o => o.Cliente)
+                        .Where(o => o.TipoEstadoID == 6);
+                    break;
+            }
+            return View(ordendetrabajo.ToList());            
+        }
+
+        public ActionResult EsperandoRepuesto()
+        {
+            ViewBag.Titulo = "Esperando Repuesto";
+            var ordendetrabajo = db.OrdenDeTrabajo.Include(o => o.TipoEquipo).Include(o => o.TipoEstado).Include(o => o.TipoMarca).Include(o => o.TipoTrabajo).Include(o => o.Cliente)
+                .Where(o => o.TipoEstadoID == 7);
+            return View(ordendetrabajo.ToList());
+        }
+
+        public ActionResult Archivada()
+        {
+            ViewBag.Titulo = "Archivadas";
+            var ordendetrabajo = db.OrdenDeTrabajo.Include(o => o.TipoEquipo).Include(o => o.TipoEstado).Include(o => o.TipoMarca).Include(o => o.TipoTrabajo).Include(o => o.Cliente)
+                .Where(o => o.TipoEstadoID == 8);
+            return View(ordendetrabajo.ToList());
+        }
     }
 }

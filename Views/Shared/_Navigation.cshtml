@@ -37,11 +37,20 @@
 					<li class="@Html.IsSelected(controller: "OrdenDeTrabajos", action: "Derivadas")">
 						<a href="@Url.Action("Derivadas", "OrdenDeTrabajos")"><i class="fa fa-mail-reply"></i> <span class="nav-label">Derivadas</span></a>
 					</li>
+					<li class="@Html.IsSelected(controller: "OrdenDeTrabajos", action: "EsperandoRepuesto")">
+						<a href="@Url.Action("EsperandoRepuesto", "OrdenDeTrabajos")"><i class="fa fa-puzzle-piece"></i> <span class="nav-label">Esperando Repuesto</span></a>
+					</li>
 					<li class="@Html.IsSelected(controller: "OrdenDeTrabajos", action: "Terminados")">
 						<a href="@Url.Action("Terminados", "OrdenDeTrabajos")"><i class="fa fa-check"></i> <span class="nav-label">Terminados</span></a>
 					</li>
 					<li class="@Html.IsSelected(controller: "OrdenDeTrabajos", action: "Entregados")">
 						<a href="@Url.Action("Entregados", "OrdenDeTrabajos")"><i class="fa fa-check-square-o"></i> <span class="nav-label">Entregados</span></a>
+					</li>
+					<li class="@Html.IsSelected(controller: "OrdenDeTrabajos", action: "Abandonada")">
+						<a href="@Url.Action("Abandonada", "OrdenDeTrabajos")"><i class="fa fa-ban"></i> <span class="nav-label">Abandonadas</span></a>
+					</li>
+					<li class="@Html.IsSelected(controller: "OrdenDeTrabajos", action: "Archivada")">
+						<a href="@Url.Action("Archivada", "OrdenDeTrabajos")"><i class="fa fa-archive"></i> <span class="nav-label">Archivadas</span></a>
 					</li>
 				</ul>
 			</li>

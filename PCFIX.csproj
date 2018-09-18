@@ -1635,6 +1635,9 @@
     <Content Include="Views\OrdenDeTrabajos\Entregados.cshtml" />
     <Content Include="Views\OrdenDeTrabajos\Derivadas.cshtml" />
     <Content Include="Views\OrdenDeTrabajos\CambiarEstado.cshtml" />
+    <Content Include="Views\OrdenDeTrabajos\Abandonada.cshtml" />
+    <Content Include="Views\OrdenDeTrabajos\Archivada.cshtml" />
+    <Content Include="Views\OrdenDeTrabajos\EsperandoRepuesto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

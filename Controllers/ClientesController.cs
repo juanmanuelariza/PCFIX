@@ -49,6 +49,7 @@ namespace PCFIX.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="ID,DNI,Apellido,Nombre,Telefono1,Telefono2,Telefono3,Email,Observaciones")] Cliente cliente)
         {
+            cliente.FechaAlta = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.Cliente.Add(cliente);
@@ -79,7 +80,7 @@ namespace PCFIX.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ID,DNI,Apellido,Nombre,Telefono1,Telefono2,Telefono3,Email,Observaciones")] Cliente cliente)
+        public ActionResult Edit([Bind(Include="ID,DNI,Apellido,Nombre,Telefono1,Telefono2,Telefono3,Email,Observaciones,FechaAlta")] Cliente cliente)
         {
             if (ModelState.IsValid)
             {

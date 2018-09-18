@@ -12,10 +12,7 @@
 		<div class="col-lg-12">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
-					<h5>Lista de Ordenes de Trabajo Entregadas</h5>
-					<div class="ibox-tools">
-						@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-sm" })
-					</div>
+					<h5>Lista de Ordenes de Trabajo @ViewBag.Titulo</h5>
 				</div>
 				<div class="ibox-content">
 
@@ -51,10 +48,10 @@
 									<td>
 										@Html.DisplayFor(modelItem => item.Cliente.Apellido), @Html.DisplayFor(modelItem => item.Cliente.Nombre)
 									</td>
-									<td>
+									<td data-order="@item.FechaIngreso.Ticks">
 										@item.FechaIngreso.ToString("dd/MM/yyyy")
 									</td>
-									<td>
+									<td data-order="@item.FechaProblableEntrega.Ticks">
 										@item.FechaProblableEntrega.ToString("dd/MM/yyyy")
 									</td>
 									<td>
@@ -98,7 +95,7 @@
 				pageLength: 25,
 				dom: '<"html5buttons"B>lTfgitp',
 				language: {
-					"url": "locales/DatatableSpanish.json"
+					"url": "../locales/DatatableSpanish.json"
 				},
 				buttons: [
 					{ extend: 'copy' },

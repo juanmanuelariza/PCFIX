@@ -8,12 +8,12 @@
 		<div class="col-lg-3">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
-					<span class="label label-success pull-right">más de 2 días</span>
+					<span class="label label-primary pull-right">más de 2 días</span>
 					<h5>Ordenes Recibidas</h5>
 				</div>
 				<div class="ibox-content">
 					<h1 class="no-margins">@ViewBag.OrdenesRecibidasAtrasadas</h1>
-					<div class="stat-percent font-bold text-success"><a href="@Url.Action("Recibidos", "OrdenDeTrabajos")"><span class="nav-label">Ir a listado</span></a></div>
+					<div class="stat-percent font-bold text-success"><a href="@Url.Action("Recibidos", "OrdenDeTrabajos", new { alerta = 1})"><span class="nav-label">Ir a listado</span></a></div>
 					<small>Total</small>
 				</div>
 			</div>
@@ -21,17 +21,45 @@
 		<div class="col-lg-3">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
-					<span class="label label-info pull-right">Annual</span>
-					<h5>Orders</h5>
+					<span class="label label-success pull-right">más de 7 días</span>
+					<h5>Derivadas</h5>
 				</div>
 				<div class="ibox-content">
-					<h1 class="no-margins">275,800</h1>
-					<div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div>
-					<small>New orders</small>
+					<h1 class="no-margins">@ViewBag.Derivadas</h1>
+					<div class="stat-percent font-bold text-success"><a href="@Url.Action("Derivadas", "OrdenDeTrabajos", new { alerta = 1})"><span class="nav-label">Ir a listado</span></a></div>
+					<small>Total</small>
 				</div>
 			</div>
 		</div>
 		<div class="col-lg-3">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<span class="label label-danger pull-right">más de 10 días</span>
+					<h5>Eliminar Backup</h5>
+				</div>
+				<div class="ibox-content">
+					<h1 class="no-margins">@ViewBag.EliminarBackup</h1>
+					<div class="stat-percent font-bold text-success"><a href="@Url.Action("Entregados", "OrdenDeTrabajos", new { alerta = 1})"><span class="nav-label">Ir a listado</span></a></div>
+					<small>Total</small>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-3">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<span class="label label-info pull-right">más de 90 días</span>
+					<h5>Abandonados</h5>
+				</div>
+				<div class="ibox-content">
+					<h1 class="no-margins">@ViewBag.Abandonados</h1>
+					<div class="stat-percent font-bold text-success"><a href="@Url.Action("Abandonada", "OrdenDeTrabajos", new { alerta = 1})"><span class="nav-label">Ir a listado</span></a></div>
+					<small>Total</small>
+				</div>
+			</div>
+		</div>
+
+
+		@*<div class="col-lg-3">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
 					<span class="label label-primary pull-right">Today</span>
@@ -45,17 +73,17 @@
 			</div>
 		</div>
 		<div class="col-lg-3">
-			<div class="ibox float-e-margins">
-				<div class="ibox-title">
-					<span class="label label-danger pull-right">Low value</span>
-					<h5>User activity</h5>
-				</div>
-				<div class="ibox-content">
-					<h1 class="no-margins">80,600</h1>
-					<div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div>
-					<small>In first month</small>
-				</div>
+		<div class="ibox float-e-margins">
+			<div class="ibox-title">
+				<span class="label label-danger pull-right">Low value</span>
+				<h5>User activity</h5>
+			</div>
+			<div class="ibox-content">
+				<h1 class="no-margins">80,600</h1>
+				<div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div>
+				<small>In first month</small>
 			</div>
 		</div>
+	</div>*@
 	</div>
 </div>

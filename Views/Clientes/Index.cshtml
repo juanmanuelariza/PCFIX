@@ -35,7 +35,7 @@
             @Html.DisplayNameFor(model => model.Telefono1)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayNameFor(model => model.FechaAlta)
         </th>
         <th>Acciones</th>
     </tr>
@@ -57,7 +57,7 @@
             @Html.DisplayFor(modelItem => item.Telefono1)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Email)
+            @Html.DisplayFor(modelItem => item.FechaAlta)
         </td>
         <td>
 			@Html.ActionLink("Detalles", "Details", new { id=item.ID }, new { @class = "btn btn-info btn-sm"})
@@ -91,7 +91,7 @@
 				pageLength: 25,
 				dom: '<"html5buttons"B>lTfgitp',
 				language: {
-					"url": "locales/DatatableSpanish.json"
+					"url": "../locales/DatatableSpanish.json"
 				},
 				buttons: [
 					{ extend: 'copy' },

@@ -24,7 +24,8 @@
     <div class="form-horizontal">
 
         @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.ID)
+		@Html.HiddenFor(model => model.ID)
+		@Html.HiddenFor(model => model.FechaAlta)
 
         <div class="form-group">
             @Html.LabelFor(model => model.DNI, new { @class = "control-label col-md-2" })
@@ -97,6 +98,7 @@
             </div>
         </div>
     </div>
+
 }
 
 

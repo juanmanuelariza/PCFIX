@@ -18,6 +18,7 @@
           <Property Name="Telefono3" Type="bigint" />
           <Property Name="Email" Type="nvarchar" MaxLength="500" />
           <Property Name="Observaciones" Type="nvarchar(max)" />
+          <Property Name="FechaAlta" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="OrdenDeTrabajo">
           <Key>
@@ -306,6 +307,7 @@
           <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="OrdenDeTrabajo" Relationship="PCFIXModel.FK_OrdenDeTrabajo_Cliente" FromRole="Cliente" ToRole="OrdenDeTrabajo" />
+          <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <Association Name="FK_OrdenDeTrabajo_Cliente">
           <End Type="PCFIXModel.Cliente" Role="Cliente" Multiplicity="1" />
@@ -381,6 +383,7 @@
           <EntitySetMapping Name="Cliente">
             <EntityTypeMapping TypeName="PCFIXModel.Cliente">
               <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
                 <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Telefono3" ColumnName="Telefono3" />
