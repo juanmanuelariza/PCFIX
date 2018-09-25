@@ -350,7 +350,6 @@
       <DependentUpon>Model_PCFIX.edmx</DependentUpon>
       <LastGenOutput>Model_PCFIX.cs</LastGenOutput>
     </Content>
-    <Content Include="pdf\example.pdf" />
     <Content Include="Content\plugins\summernote\font\summernote.eot" />
     <Content Include="Content\plugins\summernote\font\summernote.ttf" />
     <Content Include="Content\plugins\summernote\font\summernote.woff" />
